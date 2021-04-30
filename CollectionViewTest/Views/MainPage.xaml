@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:CollectionViewTest.ViewModels;assembly=CollectionViewTest"
+             x:Class="CollectionViewTest.Views.MainPage"
+             Title="{Binding Title}"
+             x:DataType="viewModels:MainPageViewModel">
+
+    <CollectionView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="viewModels:Item">
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItem Text="Left" />
+                    </SwipeView.LeftItems>
+                    <SwipeView.RightItems>
+                        <SwipeItem Text="Right" />
+                    </SwipeView.RightItems>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Red" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+
+                    <Grid HeightRequest="50">
+                        <Label x:Name="Title" Text="{Binding Name}" FontSize="Large" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding TapCommand, Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

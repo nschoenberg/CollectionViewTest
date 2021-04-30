@@ -16,6 +16,7 @@
                     <SwipeView.RightItems>
                         <SwipeItem Text="Right" />
                     </SwipeView.RightItems>
+
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup Name="CommonStates">
                             <VisualState Name="Normal" />
@@ -26,14 +27,13 @@
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
+                        
+                    <SwipeView.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding TapCommand, Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}}" />
+                    </SwipeView.GestureRecognizers>
 
-                    <Grid HeightRequest="50">
-                        <Label x:Name="Title" Text="{Binding Name}" FontSize="Large" />
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding TapCommand, Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}}" />
-                        </Grid.GestureRecognizers>
-                    </Grid>
-
+                    <Label x:Name="Title" Text="{Binding Name}" FontSize="Large" />
+                        
                 </SwipeView>
             </DataTemplate>
         </CollectionView.ItemTemplate>

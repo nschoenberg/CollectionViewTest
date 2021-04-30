@@ -41,7 +41,7 @@ namespace CollectionViewTest.ViewModels
 
         void ExecuteCommandName(Item item)
         {
-            SelectedItem = item;
+            // SelectedItem = item;
         }
     }
 }
